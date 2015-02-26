@@ -15,7 +15,7 @@ int main()
 	
 	while(scanf("%d",&num) != EOF)
 	{
-	    int tmp = num;
+	  int tmp = num;
 		int count = 0;
 		
 		int index = 0;
