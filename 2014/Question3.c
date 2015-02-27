@@ -1,31 +1,31 @@
 // Author : FinlayLiu
 // Time : 2015-02-27 
-// Problem3ï¼šæ’ç‰ˆé¢˜
-// Debug : Linux,gcc 
-// Todo : æ’ç‰ˆè¿˜æœ‰é—®é¢˜
+// Problem3: ÅÅ°æ¢˜
+// Debug : VC6.0
+// 
 
 #include <stdio.h>
 #include <string.h>
 
 int main()
 {    
-    int n;          // å†’å·ä½ç½®
+    int n;
     
     int bytes_read;
     int nbytes = 100;
     char *strs;
+    char *token1= strtok(strs,":");
+    char *token2= strtok(token1,":");
     
-    scanf("%d\n",&n);    
+	scanf("%d\n",&n);    
     
     strs = (char *) malloc (nbytes + 1);
     
+	// CÓïÑÔÖĞºÃÏñÃ»ÓĞgetlineº¯Êı¡£¡£
     while( getline(&strs, &nbytes, stdin) != -1)
     {
-        if(*strs == '\n')       // å¦‚æœæ˜¯ç©ºè¡Œ
+        if(*strs == '\n')
             break;
-            
-        char *token1=strtok(strs,":");
-        char *token2=strtok(token1,":");
         
         printf("%s%d",token1,n);
         printf(" : %s\n",token2);

@@ -1,26 +1,24 @@
 // Author : FinlayLiu
 // Time : 2015-02-26 
-// Problem2：五子棋获胜判断
-//        判断五子连珠，输出序号
-// Todo : 使用结构体
-// Debug : Linux,gcc 
+// Problem2 : ������
+// Debug : VC6.0
 
 #include <stdio.h>
 
 int TestDisk(int i,int j,int index,int num);
 int TestPoint(int i,int j);
 
-int map[19][19];        // 棋盘
+int map[19][19];        // ����
 
 int main()
 {
-    freopen("sample2.in", "r", stdin);
-    
-    int i,j,num;
+	int i,j,num;
+	int index;
     i = 0;
     j = 0;
+
+    freopen("sample2.in", "r", stdin);
     
-    // 读取棋盘
     while(scanf("%d",&num) != EOF)
     {
         map[i][j] = num;
@@ -39,10 +37,9 @@ int main()
             if(map[i][j] == 0)
                 continue;
             
-            int index;
             for(index = 1; index <= 8;index++)
             {
-                if(TestDisk(i,j,index,map[i][j]))       // 是五子连珠点
+                if(TestDisk(i,j,index,map[i][j]))
                 {
                     int tmpi,tmpj;
                     
@@ -80,18 +77,15 @@ int main()
     return 0;
 }
 
-// 检查是否五子连珠
-// i,j 珠子坐标     index 方向    num 棋子颜色
 int TestDisk(int i,int j,int index,int num)
 {
-    int tmpi,tmpj;  // 检测珠子的位置
-    int tmpn;       // 检测珠子的颜色
-    int step = 1;   // 珠子连色步数
+    int tmpi,tmpj,tmpn;
+    int step = 1;
     
     tmpi = i;
     tmpj = j;
     
-    if(index == 1)  // 方向←
+    if(index == 1)
     {
         while(step < 5)
         {
@@ -107,7 +101,7 @@ int TestDisk(int i,int j,int index,int num)
         }
         return 1;
     }
-    else if(index == 2) // 方向←↑
+    else if(index == 2) 
     {
         while(step < 5)
         {
@@ -124,8 +118,8 @@ int TestDisk(int i,int j,int index,int num)
         }
         return 1;
     }
-    else if(index == 3) // 方向↑
-    {
+    else if(index == 3) 
+	{
         while(step < 5)
         {
             tmpi--;
@@ -140,7 +134,7 @@ int TestDisk(int i,int j,int index,int num)
         }
         return 1;
     }
-    else if(index == 4) // 方向→↑
+    else if(index == 4) 
     {
         while(step < 5)
         {
@@ -160,7 +154,6 @@ int TestDisk(int i,int j,int index,int num)
     return 0;
 }
 
-// 检测坐标是否合法
 int TestPoint(int i,int j)
 {
     if(i < 0 || i > 18 || j < 0 || j > 18)
