@@ -1,3 +1,8 @@
+// Author : FinlayLiu
+// Time : 2015-03-02
+// Problem1
+// Debug : VC6.0
+
 #include <stdio.h>
 
 int main()
