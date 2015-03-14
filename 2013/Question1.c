@@ -1,6 +1,6 @@
 // Author : FinlayLiu
 // Time : 2015-02-26
-// Problem1 : Ô¼·ÖÊý
+// Problem1
 // Debug : VC6.0
 
 #include <stdio.h>

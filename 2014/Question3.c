@@ -1,46 +1,26 @@
-// Author : FinlayLiu
-// Time : 2015-02-27 
-// Problem3: �Ű梘
-// Debug : VC6.0
-
+// Question3.c
+// 2015-03-14
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 int main()
-{    
-	int i,n;
-	int works,worke,names,namee;
-	char line[200];
-    freopen("sample3.in", "r", stdin);
-    
-	scanf("%d\n",&n);
+{
+	int pos, len1, len2, i;
+	char input[120];
+	char *delim = ":", *ch1, *ch2;
+	scanf("%d\n", &pos);
+	while(fgets(input, 100, stdin))
+	{
+		ch1 = strtok(input, delim);
+		ch2 = strtok(NULL, delim);
+		len1 = strlen(ch1);
+		len2 = strlen(ch2);
 
-    while( fgets(line,200,stdin) )
-    {
-		works = worke = names = namee = -1;
-
-		for(i = 0;i < strlen(line); i++)
-		{
-			if(works == -1 && line[i] != ' ')
-				works = i;
-			else if(worke == -1 && line[i] == ' ' && works != -1 && names == -1)
-				worke = i;
-			else if(names == -1 && line[i] != ' ' && line[i] != ':' && namee == -1 && worke != -1)
-				names = i;
-			else if(namee == -1 && (line[i] == ' ' || line[i]== '\n' ) && names != -1)
-				namee = i;
-		}
-
-		for(i = works;i < worke; i++)
-			printf("%c",line[i]);
-		for(i = 0;i < n-worke+works+1;i++)
+		printf("%s", ch1);
+		for(i = 0;i < pos - len1 - 1;i++)
 			printf(" ");
-		printf(": ");
-		for(i = names;i < namee; i++)
-			printf("%c",line[i]);
-		printf("\n");
-    } 
-    
-    fclose(stdin);
-    return 0;
+		printf(": %s", ch2);
+	}
+	return 0;
 }

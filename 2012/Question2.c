@@ -1,57 +1,69 @@
-// Author : FinlayLiu
-// Time : 2015-03-02
-// Problem2
-// Debug : VC6.0
-
 #include <stdio.h>
-#include <stdlib.h>
 
-int main(){
-	int N;	//矩阵维数
-	int island[100][100];	//输入岛数据的方阵
-	int data[100][4];
-	int area = 0;
+int main()
+{
+	int n, i, j, k, flag, out;
+	int map[500][500];
+	//freopen("sample.txt", "r", stdin);
+	scanf("%d", &n);
+	memset(map, -1, 500 * 500);
+	out = 0;
+	for(i = 0;i < n;i++)
+		for(j = 0;j < n;j++)
+			scanf("%d", &map[i][j]);
 
-	freopen("simple2.in", "r", stdin);
-	while(scanf("%d",&N) != EOF){
-		int i,j;
-		//初始化
-		memset(data,-1,100*4*sizeof(int));
-		//读入数据
-		for(i=0;i<N;i++){
-			for(j=0;j<N;j++){
-				scanf("%d",&island[i][j]);
-			}
-		}
+	for(i = 0;i < n;i++)
+	{
+		for(j = 0;j < n;j++)
+		{
+			if(i == 0 || i == n - 1 || j == 0 || j == n - 1)
+				continue;
 
-		for(i=0;i<N;i++){
-			for(j=0;j<N;j++){
+			if(map[i][j] == 1)
+				continue;
 
-				if(island[i][j] == 1){	//小岛边界
-
-					if(data[i][0] == -1){
-						data[i][0] = j;
-					}
-					if(data[j][2] == -1){
-						data[j][2] = i;
-					}
-					data[i][1] = j;
-					data[j][3] = i;
+			flag = 0;
+			for(k = j - 1; k >= 0; k--)
+			{
+				if(map[i][k] == 1)
+				{
+					flag++;
+					break;
 				}
 			}
-		}
 
-		for(i=0;i<N;i++){
-			for(j=0;j<N;j++){
-				if(island[i][j] == 0){	//小岛边界
-					if(i > data[j][2] && i < data[j][3] && j > data[i][0] && j < data[i][1]){
-						area++;
-						//printf("i=%d,j=%d\n",i,j); for debug
-					}
+			for(k = j + 1; k < n; k++)
+			{
+				if(map[i][k] == 1)
+				{
+					flag++;
+					break;
 				}
 			}
+
+			for(k = i - 1; k >= 0; k--)
+			{
+				if(map[k][j] == 1)
+				{
+					flag++;
+					break;
+				}
+			}
+
+			for(k = i + 1; k < n; k++)
+			{
+				if(map[k][j] == 1)
+				{
+					flag++;
+					break;
+				}
+			}
+
+			if(flag == 4)
+				out++;
 		}
-		printf("%d\n",area);
 	}
-	return 0;
+	printf("%d\n", out);
+	//fclose(stdin);
+    return 0;
 }
